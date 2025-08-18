@@ -1,6 +1,8 @@
 const html = document.querySelector("html");
 const themeToggler = document.getElementById("theme-toggler");
 const themeIcon = document.getElementById("theme-icon");
+const fullscreenToggler = document.getElementById("fullscreen-toggler");
+const fullscreenIcon = document.getElementById("fullscreen-toggler-icon");
 const timeEl = document.getElementById("time");
 const dateEl = document.getElementById("date");
 
@@ -16,8 +18,29 @@ function toggleTheme() {
   });
 }
 
+function toggleFullscreen() {
+  fullscreenToggler.addEventListener("click", () => {
+    if (document.fullscreenElement) {
+      fullscreenIcon.classList.replace(
+        "fa-down-left-and-up-right-to-center",
+        "fa-up-right-and-down-left-from-center"
+      );
+      document.exitFullscreen();
+    } else {
+      fullscreenIcon.classList.replace(
+        "fa-up-right-and-down-left-from-center",
+        "fa-down-left-and-up-right-to-center"
+      );
+      document.documentElement.requestFullscreen();
+    }
+  });
+}
+
 // Initialize the theme toggler
 toggleTheme();
+
+// Initialize the fullscreen toggler
+toggleFullscreen();
 
 function showDate() {
   const date = new Date();

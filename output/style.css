@@ -602,6 +602,14 @@ body {
   top: 1.25rem;
 }
 
+.right-10{
+  right: 2.5rem;
+}
+
+.right-16{
+  right: 4rem;
+}
+
 .flex{
   display: flex;
 }
@@ -748,6 +756,18 @@ body {
 
   .lg\:top-10{
     top: 2.5rem;
+  }
+
+  .lg\:right-16{
+    right: 4rem;
+  }
+
+  .lg\:right-20{
+    right: 5rem;
+  }
+
+  .lg\:top-5{
+    top: 1.25rem;
   }
 
   .lg\:w-\[1000px\]{
