@@ -21,17 +21,28 @@ function toggleTheme() {
 function toggleFullscreen() {
   fullscreenToggler.addEventListener("click", () => {
     if (document.fullscreenElement) {
-      fullscreenIcon.classList.replace(
-        "fa-down-left-and-up-right-to-center",
-        "fa-up-right-and-down-left-from-center"
-      );
-      document.exitFullscreen();
+      document
+        .exitFullscreen()
+        .catch((err) => console.error(`Error exiting fullscreen: ${err}`));
     } else {
+      document.documentElement
+        .requestFullscreen()
+        .catch((err) => console.error(`Error entering fullscreen: ${err}`));
+    }
+  });
+
+  // update the icon based on fullscreen state (safety check; it was creating issues with the icon not updating correctly when pressing `Esc` button to exit fullscreen)
+  document.addEventListener("fullscreenchange", () => {
+    if (document.fullscreenElement) {
       fullscreenIcon.classList.replace(
         "fa-up-right-and-down-left-from-center",
         "fa-down-left-and-up-right-to-center"
       );
-      document.documentElement.requestFullscreen();
+    } else {
+      fullscreenIcon.classList.replace(
+        "fa-down-left-and-up-right-to-center",
+        "fa-up-right-and-down-left-from-center"
+      );
     }
   });
 }
